@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FruitController;
+use App\Http\Controllers\FruitReportController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/fruit/edit/{fruit}', [FruitController::class, 'edit'])->name('fruit.edit');
     Route::put('/fruit/update/{fruit}', [FruitController::class, 'update'])->name('fruit.update');
     Route::delete('/fruit/delete/{fruit}', [FruitController::class, 'destroy'])->name('fruit.destroy');
+
+    Route::get('/fruit-report', [FruitReportController::class, 'index'])->name('fruit.report');
+    Route::get('/fruit-report/pdf', [FruitReportController::class, 'exportPdf'])->name('fruit.report.pdf');
+    Route::get('/fruit-report/excel', [FruitReportController::class, 'exportExcel'])->name('fruit.report.excel');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
